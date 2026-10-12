@@ -80,9 +80,15 @@ private:
         half alpha = 1.0;
         half beta = 0.0;
 
-        HGEMM_CHECK_CUBLAS_ERROR(cublasGemmEx(handle, CUBLAS_OP_T, CUBLAS_OP_N, N, M, K, &alpha, B, CUDA_R_16F, K, A,
-                                              CUDA_R_16F, K, &beta, C, CUDA_R_16F, N, CUBLAS_COMPUTE_16F,
-                                              CUBLAS_GEMM_DEFAULT_TENSOR_OP));
+        HGEMM_CHECK_CUBLAS_ERROR(cublasGemmEx(handle, 
+                                            CUBLAS_OP_N, CUBLAS_OP_N, 
+                                            N, M, K, 
+                                            &alpha, 
+                                            B, CUDA_R_16F, N, 
+                                            A, CUDA_R_16F, K, 
+                                            &beta, 
+                                            C, CUDA_R_16F, N, CUBLAS_COMPUTE_16F,
+                                            CUBLAS_GEMM_DEFAULT_TENSOR_OP));
         HGEMM_CHECK_CUBLAS_ERROR(cublasDestroy(handle));
     }
 

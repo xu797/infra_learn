@@ -112,6 +112,42 @@ public:
 
         HLOG("Max diff: %f, avg diff: %f", m_max_diff, m_avg_diff);
     }
+//    void checkValue(Matrix *base) {
+//     HGEMM_CHECK(base);
+//     HGEMM_CHECK_EQ(m_row, base->getRow());
+//     HGEMM_CHECK_EQ(m_col, base->getCol());
+//     m_max_diff = 0.0;
+//     m_avg_diff = 0.0;
+//     double diff = 0.0;
+
+//     HLOG("==================================== Sample Elements ====================================");
+//     HLOG("%-4s %12s %12s %12s %12s %12s %12s %12s %12s", "Row",
+//         "C0/Base0/d0", "C1/Base1/d1", "C2/Base2/d2", "C3/Base3/d3",
+//         "C4/Base4/d4", "C5/Base5/d5", "C6/Base6/d6", "C7/Base7/d7");
+//     HLOG("------------------------------------------------------------------------------------------");
+//     for (size_t r = 0; r < 3; r++) {
+//         char buf[1024];
+//         char col[8][64];
+//         for (size_t c = 0; c < 8; c++) {
+//             size_t idx = r * m_col + c;
+//             float val_c = __half2float(m_host_ptr[idx]);
+//             float val_base = __half2float(base->getHostPtr()[idx]);
+//             double d = std::abs(val_c - val_base);
+//             snprintf(col[c], sizeof(col[c]), "%.2f/%.2f/%.1e", val_c, val_base, d);
+//         }
+//         snprintf(buf, sizeof(buf), "Row %-2zu %12s %12s %12s %12s %12s %12s %12s %12s",
+//             r, col[0], col[1], col[2], col[3], col[4], col[5], col[6], col[7]);
+//         HLOG("%s", buf);
+//     }
+
+//     for (size_t i = 0; i < m_elem_num; ++i) {
+//         diff = static_cast<double>(std::abs(__half2float(m_host_ptr[i]) - __half2float(base->getHostPtr()[i])));
+//         m_max_diff = std::max(m_max_diff, diff);
+//         m_avg_diff += diff;
+//     }
+//     m_avg_diff /= static_cast<double>(m_elem_num);
+//     HLOG("Max diff: %f, avg diff: %f", m_max_diff, m_avg_diff);
+//     }
 
 private:
     const size_t m_row = 0;
