@@ -21,3 +21,13 @@ target_link_libraries(hgemm_v1 PRIVATE
 )
 
 target_include_directories(hgemm_v1 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/common)
+
+
+add_executable(hgemm_v2 hgemm_v2.cu)
+
+target_link_libraries(hgemm_v2 PRIVATE
+    CUDA::cudart
+    CUDA::cublas
+)
+
+target_include_directories(hgemm_v2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/common)
